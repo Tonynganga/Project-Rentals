@@ -22,8 +22,27 @@ const House = ({ house }) => {
                     <div className='text-[20px] rounded-full'>
                         <BiBed />
                     </div>
+                    <div className='text-base'>
+                        { house.bedrooms }
+                    </div>
+                </div>
+                <div className='flex items-center text-gray-600 gap-1'>
+                    <div className='text-[20px] rounded-full'>
+                        <BiBath />
+                    </div>
+                    <div className='text-base'>{house.bathrooms}</div>
+                </div>
+                <div className='flex items-center text-gray-600 gap-1'>
+                    <div className='text-[20px] rounded-full'>
+                        <BiArea />
+                    </div>
+                    <div className='text-base'>{ house.surface }</div>
                 </div>
             </div>
+            <div className='text-lg font-semibold text-violet-600 mb-4'>
+                Ksh { house.price }
+            </div>
+
         </div>
     );
 
