@@ -125,7 +125,7 @@
             loading
          }}
       >
-         {{ children }}
+         { children }
       </HouseContext.Provider>   
    );
  };

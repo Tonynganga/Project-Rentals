@@ -11,7 +11,7 @@ const House = ({ house }) => {
                     { house.type }
                 </div>
                 <div className='bg-violet-500 rounded-full text-white px-3 inline-block'>
-                    { house.country }
+                    { house.county }
                 </div>
             </div>
             <div className='text-lg font-semibold max-w-[260px]'>
