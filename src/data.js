@@ -54,6 +54,32 @@ import Agent10 from './assets/img/agents/agent10.png';
 import Agent11 from './assets/img/agents/agent11.png';
 import Agent12 from './assets/img/agents/agent12.png';
 
+export const nav =[
+  {
+    text: "home",
+    path: "/",
+  },
+  {
+    text: "about",
+    path: "/about",
+  },
+  {
+    text: "services",
+    path: "/services",
+  },
+  {
+    text: "blog",
+    path: "/blog",
+  },
+  {
+    text: "pricing",
+    path: "/pricing",
+  },
+  {
+    text: "contact",
+    path: "/contact",
+  }
+]
 export const housesData = [
   {
     id: 1,
