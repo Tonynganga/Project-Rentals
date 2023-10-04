@@ -56,27 +56,27 @@ import Agent12 from './assets/img/agents/agent12.png';
 
 export const nav =[
   {
-    text: "home",
+    text: "Home",
     path: "/",
   },
   {
-    text: "about",
+    text: "About",
     path: "/about",
   },
   {
-    text: "services",
+    text: "Services",
     path: "/services",
   },
   {
-    text: "blog",
+    text: "Blog",
     path: "/blog",
   },
   {
-    text: "pricing",
+    text: "Pricing",
     path: "/pricing",
   },
   {
-    text: "contact",
+    text: "Contact",
     path: "/contact",
   }
 ]
@@ -669,4 +669,12 @@ export const housesData = [
       phone: '0123 456 78910',
     },
   }
+]
+
+export const footer = [
+  {
+    title: "LAYOUTS",
+    text: [{ list: "Home Page" }, { list: "About Page" }, { list: "Service Page" }, { list: "Contact Page" }, { list: "Single Blog" }],
+  },
+  
 ];
