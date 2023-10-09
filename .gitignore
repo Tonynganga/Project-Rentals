@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/_pycache_
 # production
 /build
 
