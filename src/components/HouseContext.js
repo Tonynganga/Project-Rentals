@@ -25,6 +25,7 @@
 
        //set Counties state
        setCounties(uniqueCounties);
+       
     }, []);
 
     useEffect(() => {
@@ -36,6 +37,7 @@
       const uniqueProperties = ['Property type (any)', ...new Set(allProperties)];
 
       setProperties(uniqueProperties);
+      
     }, []);
 
     const handleClick = () =>{
@@ -50,6 +52,7 @@
 
       const maxPrice = parseInt(price.split(' ')[2]);
 
+      
       const newHouses = housesData.filter((house) => {
          const housePrice = parseInt(house.price);
 
