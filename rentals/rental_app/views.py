@@ -1,6 +1,6 @@
 from rest_framework import viewsets,permissions
 from .models import location,sub_location,appartment
-from .serializer import LocationSerializer,SubLocationSerializer,AppartmentSerializer
+from .serializer import LocationSerializer,SubLocationSerializer,AppartmentSerializer,LoginUserSerializer
 
 class CustomCreatePermission(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -41,10 +41,23 @@ class AppartmentAPI(viewsets.ModelViewSet):
 
 from knox.views import LoginView as KnoxLoginView
 from knox.views import LogoutView as KnoxLogoutView
+from knox.auth import TokenAuthentication
 from rest_framework import permissions
+from knox.models import AuthToken
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth import login
+# from rest_framework.authentication import TokenAuthentication
 
 class LoginView(KnoxLoginView):
+    authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.AllowAny,)
+    def post(self, request, format=None):
+        serializer = LoginUserSerializer(data=request.data)  # changed  to desired serializer
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        login(request, user)
+        return super(LoginView, self).post(request)
 
 class LogoutView(KnoxLogoutView):
     permission_classes = (permissions.IsAuthenticated,)
