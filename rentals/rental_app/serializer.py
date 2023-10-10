@@ -16,10 +16,12 @@ class SubLocationSerializer(serializers.ModelSerializer):
         fields=['id','name','location_id']
         read_only_fields=['id']
 class AppartmentSerializer(serializers.ModelSerializer):
+    location_name = serializers.CharField(source='sub_location_id.location_id.name',required=False)
+    sub_location_name = serializers.CharField(source='sub_location_id.name',required=False)
     class Meta:
         model=appartment
-        fields=['id','name','sub_location_id','rent_amount','image']
-        read_only_fields=['id']
+        fields=['id','name','sub_location_id','rent_amount','image','location_name','sub_location_name']
+        read_only_fields=['id','location_name','sub_location_name']
 class LoginUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField()  # added missing fields for serializer
     password = serializers.CharField()

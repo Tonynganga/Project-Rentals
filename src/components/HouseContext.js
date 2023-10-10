@@ -1,13 +1,17 @@
  import React, { createContext, useState, useEffect } from 'react';
+ import axios from 'axios';
 
  import { housesData } from '../data';
 
  export const HouseContext = createContext();
 
  const HouseContextProvider = ({ children }) => {
-    const [houses, setHouses] = useState(housesData);
+    
+   const [houses, setHouses] = useState(housesData);
+   const [houses2, setHouses2] = useState([]);
     const [county, setCounty] = useState('Location (any)');
     const [counties, setCounties] = useState([]);
+    const [Location, setLocations] = useState([]);
     const [property, setProperty] = useState('Property type (any)');
     const [properties, setProperties] = useState([]);
     const [price, setPrice] = useState('Price (any)');
@@ -16,6 +20,18 @@
 
     useEffect(() =>{
        //return all counties
+       let my_data;
+       axios.get ('http://172.22.68.150/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
+      .then (res => {
+            my_data=res.data
+            console.log(typeof(my_data))
+            setHouses2(my_data)
+      })
+      .catch (err => {
+      console.log(err.data)
+      });
+      
+      console.log(houses2)
        const allCounties = houses.map((house) => {
             return house.county;
        });
@@ -25,8 +41,17 @@
 
        //set Counties state
        setCounties(uniqueCounties);
-       
+      //  console.log(houses2)
+      //  console.log(counties)
     }, []);
+    useEffect(() => {
+      if(houses2.length>0){
+
+      }
+      console.log(houses2)
+       console.log(counties)
+    },[houses2])
+   
 
     useEffect(() => {
       const allProperties = houses.map((house) =>{
@@ -125,7 +150,9 @@
             setPrice,
             handleClick,
             houses,
-            loading
+            loading,
+            setHouses2,
+            houses2
          }}
       >
          { children }

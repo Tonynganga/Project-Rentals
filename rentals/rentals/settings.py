@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'auth.User'
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Application definition
