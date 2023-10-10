@@ -1,18 +1,25 @@
 import React from 'react';
 
+import Search from '../HouseSearch/Search';
+
 import Heading from '../Headings/Heading';
-import './Hero.css';
+import './Main.css';
+import HeroImage from '../assets/img/Hero.jpg';
 
 
 const Hero = () => {
     return (
         <>
-            <section className="bg-cover bg-center bg-no-repeat h-[90vh] w-full"
+            <section className="hero"
                                 style={{
-                                    backgroundImage: "url('../../../../public/images/banner.png')",
+                                    backgroundImage: `url(${HeroImage})`
                                   }}>
-                <div className='container'>
-                    <Heading title='Find Your Next Apartment' subtitle='Search for comfortable and featured apartments in your local area.'/>
+                <div className='hero-container'>
+                    <Heading  title='Find Your Next Apartment' subtitle='Search for comfortable and featured apartments in your local area.'/>
+                    <div>
+                        <Search />
+                    </div>
+                    
                 </div>
             </section>
         </>

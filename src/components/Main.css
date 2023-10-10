@@ -1,0 +1,25 @@
+.hero {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 70vh;
+  width: 100%;
+}
+  .hero .hero-container {
+    padding-top: 8%;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+  .hero h1 {
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+    font-weight: bolder;
+  }
+  .hero p {
+    text-align: center;
+    color: #fff;
+    opacity: 0.8;
+    margin-top: 10px;
+  }
+  
