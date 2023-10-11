@@ -7,15 +7,14 @@
 
  const HouseContextProvider = ({ children }) => {
     
-   const [houses, setHouses] = useState(housesData);
+   const [houses, setHouses] = useState([]);
    const [houses2, setHouses2] = useState([]);
-    const [county, setCounty] = useState('Location (any)');
-    const [counties, setCounties] = useState([]);
-    const [Location, setLocations] = useState([]);
-    const [property, setProperty] = useState('Property type (any)');
-    const [properties, setProperties] = useState([]);
-    const [price, setPrice] = useState('Price (any)');
-    const [loading, setLoading] = useState(false);
+   const [location, setLocation] = useState('Location (any)');
+   const [Locations, setLocations] = useState([]);
+   const [SubLocations, setSubLocations] = useState([]);
+   const [subLocation, setsubLocation] = useState('Property type (any)');
+   const [price, setPrice] = useState('Price (any)');
+   const [loading, setLoading] = useState(false);
 
 
     useEffect(() =>{
@@ -23,51 +22,50 @@
        let my_data;
        axios.get ('http://172.22.68.150/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
       .then (res => {
-            my_data=res.data
-            console.log(typeof(my_data))
-            setHouses2(my_data)
+            setHouses(res.data)            
       })
       .catch (err => {
       console.log(err.data)
-      });
-      
-      console.log(houses2)
-       const allCounties = houses.map((house) => {
-            return house.county;
-       });
-
-       //remove duplicates
-       const uniqueCounties = ['Location (any)', ...new Set(allCounties)];
-
-       //set Counties state
-       setCounties(uniqueCounties);
-      //  console.log(houses2)
-      //  console.log(counties)
+      });     
     }, []);
-    useEffect(() => {
-      if(houses2.length>0){
 
+
+    useEffect(() => {
+      if(houses.length>0){
+      setHouses2(houses)
+      const allLocations = houses.map((house) => {
+           return house.location_name;
+      });
+
+      const uniqueLocation = ['Location (any)', ...new Set(allLocations)];
+
+      setLocations(uniqueLocation);
+
+      const allSubLocation = houses.map((house) =>{
+         return house.sub_location_name;
+      });
+
+      const uniqueSubLocation = ['Property type (any)', ...new Set(allSubLocation)];
+
+      setSubLocations(uniqueSubLocation);
       }
-      console.log(houses2)
-       console.log(counties)
-    },[houses2])
+    },[houses])
    
 
-    useEffect(() => {
-      const allProperties = houses.map((house) =>{
-         return house.type;
-      });
+   //  useEffect(() => {
+   //    const allProperties = houses.map((house) =>{
+   //       return house.type;
+   //    });
 
-      //remove duplicates
-      const uniqueProperties = ['Property type (any)', ...new Set(allProperties)];
+   //    //remove duplicates
+   //    const uniqueProperties = ['Property type (any)', ...new Set(allProperties)];
 
-      setProperties(uniqueProperties);
+   //    setProperties(uniqueProperties);
       
-    }, []);
+   //  }, []);
 
     const handleClick = () =>{
       setLoading(true);
-
       //check the string if includes any
       const isDefault = (str) => {
          return str.split(' ').includes('(any)');
@@ -78,12 +76,12 @@
       const maxPrice = parseInt(price.split(' ')[2]);
 
       
-      const newHouses = housesData.filter((house) => {
-         const housePrice = parseInt(house.price);
+      const newHouses = houses.filter((house) => {
+         const housePrice = parseInt(house.rent_amount);
 
          if(
-            house.county === county &&
-            house.type === property &&
+            house.location_name === location &&
+            house.sub_location_name === subLocation &&
             housePrice >= minPrice &&
             housePrice <= maxPrice
          ){
@@ -91,45 +89,45 @@
          }
 
          //all values are default
-         if(isDefault(county) && isDefault(property) && isDefault(price)){
+         if(isDefault(location) && isDefault(subLocation) && isDefault(price)){
             return house;
          }
          //county is not default
-         if(!isDefault(county) && isDefault(property) && isDefault(price)){
-            return house.county === county;
+         if(!isDefault(location) && isDefault(subLocation) && isDefault(price)){
+            return house.location_name === location;
          }
          //property is not default
-         if(!isDefault(property) && isDefault(county) && isDefault(price)){
-            return house.type === property;
+         if(!isDefault(subLocation) && isDefault(location) && isDefault(price)){
+            return house.sub_location_name === subLocation;
          }
 
           // price is not default
-      if (!isDefault(price) && isDefault(county) && isDefault(property)) {
+      if (!isDefault(price) && isDefault(location) && isDefault(subLocation)) {
          if (housePrice >= minPrice && housePrice <= maxPrice) {
            return house;
          }
        }
        // county and property is not default
-       if (!isDefault(county) && !isDefault(property) && isDefault(price)) {
-         return house.county === county && house.type === property;
+       if (!isDefault(location) && !isDefault(subLocation) && isDefault(price)) {
+         return house.location_name === location && house.sub_location_name === subLocation;
        }
        // county and price is not default
-       if (!isDefault(county) && isDefault(property) && !isDefault(price)) {
+       if (!isDefault(location) && isDefault(subLocation) && !isDefault(price)) {
          if (housePrice >= minPrice && housePrice <= maxPrice) {
-           return house.county === county;
+           return house.location_name === location;
          }
        }
        // property and price is not default
-       if (isDefault(county) && !isDefault(property) && !isDefault(price)) {
+       if (isDefault(location) && !isDefault(subLocation) && !isDefault(price)) {
          if (housePrice >= minPrice && housePrice <= maxPrice) {
-           return house.type === property;
+           return house.sub_location_name === subLocation;
          }
        }
       });
 
       setTimeout(() =>{
          return (
-            newHouses.length < 1 ? setHouses([]) : setHouses(newHouses),
+            newHouses.length < 1 ? setHouses2([]) : setHouses2(newHouses),
             setLoading(false)
          );
       }, 1000);
@@ -138,21 +136,20 @@
    return(
       <HouseContext.Provider
          value={{
-            county,
-            setCounty,
-            counties,
-            setCounties,
-            property,
-            setProperty,
-            properties,
-            setProperties,
+            setHouses2,
+            houses2,
+            Locations,
+            setLocations,
+            location,
+            setLocation,            
+            subLocation,
+            setsubLocation,
+            SubLocations,
+            setSubLocations,
             price,
             setPrice,
             handleClick,
-            houses,
-            loading,
-            setHouses2,
-            houses2
+            loading,            
          }}
       >
          { children }

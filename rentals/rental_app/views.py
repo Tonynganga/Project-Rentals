@@ -1,4 +1,4 @@
-from rest_framework import viewsets,permissions
+from rest_framework import viewsets,permissions,generics
 from .models import location,sub_location,appartment
 from .serializer import LocationSerializer,SubLocationSerializer,AppartmentSerializer,LoginUserSerializer
 
@@ -32,10 +32,12 @@ class AppartmentAPI(viewsets.ModelViewSet):
         if self.action == 'create':
             return [CustomCreatePermission()]
         return super().get_permissions()
-    def list_by_sub(self, request, *args, **kwargs):
-        self.queryset = appartment.objects.filter(
-            sub_location_id=self.kwargs['sub_loc'])
-        return super().list(request, *args, **kwargs)
+    def list(self, request, *args, **kwargs):
+        serializer = self.get_serializer(self.queryset, many=True)
+        return Response(serializer.data)
+        # self.queryset = appartment.objects.filter(
+        #     sub_location_id=self.kwargs['sub_loc'])
+        # return super().list(request, *args, **kwargs)
     
 
 

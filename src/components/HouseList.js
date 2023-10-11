@@ -13,7 +13,7 @@ import { ImSpinner } from 'react-icons/im';
 import { Link } from "react-router-dom";
 
 const HouseList = () => {
-    const { houses, loading } = useContext(HouseContext);
+    const { houses2, loading } = useContext(HouseContext);
 
     if(loading){
         return (
@@ -21,7 +21,7 @@ const HouseList = () => {
         );
     }
 
-    if(houses.length < 1){
+    if(houses2.length < 1){
         return (
             <div className='text-center text-3xl text-gray-400 mt-48'>
                 Sorry, nothing was found
@@ -33,9 +33,9 @@ const HouseList = () => {
         <section className='mb-20 mt-[20px]'>
             <div className='container mx-auto'>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14'>
-                    {houses.map((house, index) => {
+                    {houses2.map((house, index) => {
                         return (
-                            <Link to={`/property/${house.id}`}key={index}>
+                            <Link to={`/subLocation/${house.id}`}key={index}>
                                 <House house={house} />
                             </Link>
                         );

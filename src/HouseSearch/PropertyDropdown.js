@@ -7,7 +7,7 @@ import { Menu } from '@headlessui/react';
 import { HouseContext } from '../components/HouseContext';
 
 const PropertyDropdown = () =>{
-    const {property, setProperty, properties } = useContext(HouseContext);
+    const {subLocation, setsubLocation, SubLocations } = useContext(HouseContext);
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -18,7 +18,7 @@ const PropertyDropdown = () =>{
             >
                 <RiHome5Line className='dropdown-icon-primary' />
                 <div>
-                    <div className='text-[15px] font-medium leading-tight'>{property}</div>
+                    <div className='text-[15px] font-medium leading-tight'>{subLocation}</div>
                     <div className='text-[13px]'>Select property type</div>
                 </div>
                 {isOpen ? (
@@ -29,15 +29,15 @@ const PropertyDropdown = () =>{
             </Menu.Button>  
 
             <Menu.Items className='dropdown-menu'>
-                {properties.map((property, index) => {
+                {SubLocations.map((subLocation, index) => {
                     return (
                         <Menu.Item
                             as='li'
-                            onClick={() => setProperty(property)}
+                            onClick={() => setsubLocation(subLocation)}
                             key={index}
                             className='cursor-pointer hover:text-violet-700 transition'
                         >
-                            {property}
+                            {subLocation}
                         </Menu.Item>        
                     );
                 })}

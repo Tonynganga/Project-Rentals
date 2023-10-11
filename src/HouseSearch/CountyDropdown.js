@@ -8,7 +8,7 @@ import { Menu } from '@headlessui/react';
 import { HouseContext } from '../components/HouseContext';
 
 const CountyDropdown = () =>{
-    const { county, setCounty, counties } = useContext(HouseContext);
+    const { location, setLocation, Locations } = useContext(HouseContext);
     const [isOpen, setIsOpen] = useState(false);
     return (
         <Menu as='div' className='dropdown relative'>
@@ -18,7 +18,7 @@ const CountyDropdown = () =>{
             >
                 <RiMapPinLine className='dropdown-icon-primary' />
                 <div>
-                    <div className='text-[15px] font-medium leading-tight'>{county}</div>
+                    <div className='text-[15px] font-medium leading-tight'>{location}</div>
                     <div className='text-[13px]'>Select your place</div>
                 </div>
                 {isOpen ? (
@@ -29,14 +29,14 @@ const CountyDropdown = () =>{
             </Menu.Button>
 
             <Menu.Items className='dropdown-menu'>
-                {counties.map((county, index) =>{
+                {Locations.map((loc, index) =>{
                     return (
                         <Menu.Item
                             as='li'
-                            onClick={() => setCounty(county)}
+                            onClick={() => setLocation(loc)}
                             key={index}
                             className='cursor-pointer hover:text-violet-700 transition'>
-                                {county}
+                                {loc}
                             </Menu.Item>
                     )
                 })}
