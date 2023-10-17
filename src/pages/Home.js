@@ -3,7 +3,6 @@ import React from 'react';
 //pages
 import HouseList from '../components/HouseList';
 import Hero from '../components/Hero';
-import Search from '../HouseSearch/Search';
 
 const Home = () =>{
     return (
