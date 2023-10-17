@@ -15,6 +15,9 @@ const Header = () =>{
                     <div className='h-24 pt-0'>
                         <img src={ LogoImage } alt='' className='rounded-full object-scale-down max-w-max h-full'/>
                     </div>
+                    <div className=''>
+                        <h2 className='text-orange-600 font-bold shadow-md text-3xl mr-[40px]'>COMFORT QUARTERS</h2>
+                    </div>
                     <div className='py-5px'>
                         <ul className={ navList ? "small" : "flex"}>
                             {nav.map((list, index) => (
