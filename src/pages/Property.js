@@ -6,6 +6,8 @@ import { BiBed, BiBath, BiPhone, BiArea } from "react-icons/bi";
 
 import { Link, useParams } from "react-router-dom";
 
+import PropertySlider from "../components/PropertySlider";
+
 const Property = () =>{
     const { id } = useParams();
     const property = housesData.find((house) => {
@@ -33,7 +35,7 @@ const Property = () =>{
             <div className="flex flex-col items-start gap-8 lg:flex-row">
                 <div className="max-w-[768px]">
                     <div className="mb-8">
-                        <img src={property.imageLg} alt=""/>
+                        < PropertySlider />
                     </div>
                     <div className="flex gap-x-6 text-violet-700 mb-6">
                         <div className="flex gap-x-2 items-center">
