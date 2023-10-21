@@ -22,4 +22,38 @@
     opacity: 0.8;
     margin-top: 10px;
   }
+
+
+/*Property Slider*/
+.main{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.MainImage{
+  height: 100%;
+  width: 95%;
+  
+}
+
+.flex_row{
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  padding-top: 20px;
+}
+
+.thumbnail{
+padding-left: 20px;
+}
+.clicked{
+border: 5px solid black;
+}
+.btns{
+  margin-top: 20%;
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  background: grey;
+}
   
