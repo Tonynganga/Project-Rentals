@@ -31,8 +31,9 @@
   flex-direction: column;
 }
 .MainImage{
-  height: 500px;
-  width: 700px;
+  height: 480px;
+  width: 720px;
+  border-radius: 20px;
   
 }
 
@@ -56,7 +57,7 @@
 border: 5px solid black;
 }
 .btns{
-  margin-top: 20%;
+  margin-top: 25%;
   height: 40px;
   width: 40px;
   border-radius: 5px;
