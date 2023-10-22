@@ -44,7 +44,9 @@
 }
 
 .thumbnail{
-padding-left: 20px;
+  height: 100%;
+  object-fit: contain;
+  padding-left: 20px;
 }
 .clicked{
 border: 5px solid black;

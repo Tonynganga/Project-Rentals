@@ -42,7 +42,7 @@ const PropertySlider = () => {
             <div className="flex_row">
                 {imgs.map((data, i)=>
                     <div className="thumbnail" key={i}>
-                        <img alt="" className={wordData.id==i?"clicked":""} src={data.value} onClick={()=>handleClick(i)} height="70" width="100"/>
+                        <img alt="" className={wordData.id==i?"clicked":""} src={data.value} onClick={()=>handleClick(i)} height="70" width="70" min-height="70"/>
                     </div>
                 )}
             </div>
