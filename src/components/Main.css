@@ -31,8 +31,8 @@
   flex-direction: column;
 }
 .MainImage{
-  height: 100%;
-  width: 95%;
+  height: 500px;
+  width: 700px;
   
 }
 
@@ -47,6 +47,10 @@
   height: 100%;
   object-fit: contain;
   padding-left: 20px;
+}
+.thumbnail img{
+  height: 70px;
+  width: 100px;
 }
 .clicked{
 border: 5px solid black;
