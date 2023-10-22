@@ -8,6 +8,12 @@ const PropertySlider = () => {
         {id:0,value:"https://wallpaperaccess.com/full/2637581.jpg"},
         {id:1,value:"https://source.unsplash.com/user/c_v_r/1900x800"},
         {id:2,value:"https://source.unsplash.com/user/c_v_r/100x100"},
+        {id:3,value:"https://wallpaperaccess.com/full/2637581.jpg"},
+        {id:4,value:"https://source.unsplash.com/user/c_v_r/1900x800"},
+        {id:5,value:"https://source.unsplash.com/user/c_v_r/100x100"},
+        {id:6,value:"https://wallpaperaccess.com/full/2637581.jpg"},
+        {id:7,value:"https://source.unsplash.com/user/c_v_r/1900x800"},
+        {id:8,value:"https://source.unsplash.com/user/c_v_r/100x100"},
     ]
     const [wordData,setWordData] =useState(imgs[0])
     const [val, setVal] = useState(0)
