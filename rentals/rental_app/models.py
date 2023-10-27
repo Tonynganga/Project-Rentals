@@ -36,14 +36,27 @@ class sub_location(models.Model):
 class appartment(models.Model):   
     sub_location_id=models.ForeignKey(sub_location,on_delete=models.CASCADE)
     name=models.CharField(max_length = 50)
-    image = models.ImageField(default='download.jpg',upload_to='appartment_pics')
+    thumbnail = models.ImageField(default='download.jpg',upload_to='appartment_pics')
+    image = models.ImageField(default='download.jpg',upload_to='appartment_pics')    
+    image2 = models.ImageField(default='download.jpg',upload_to='appartment_pics')
+    image3 = models.ImageField(default='download.jpg',upload_to='appartment_pics')
+    description = models.TextField(null=True)
     rent_amount=models.IntegerField(null=True)
     def __str__ (self):
         return f'{self.name} pic'
     def save(self ,*args, **kwargs):
         super(appartment, self).save(*args, **kwargs)
-        img=Image.open(self.image.path)
-        if img.height>300 or img.width > 300:
+        thumbnail=Image.open(self.thumbnail.path)
+        img=Image.open(self.image.path)        
+        img2=Image.open(self.image2.path)
+        img3=Image.open(self.image3.path)
+        my_list=[(img,self.image.path),(img2,self.image2.path),(img3,self.image3.path)]
+        if thumbnail.height>300 or thumbnail.width > 300:
             output_size=(300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+            thumbnail.thumbnail(output_size)
+            thumbnail.save(self.thumbnail.path)
+        for img,path in my_list:
+            if img.height>500 or img.width > 700:
+                output_size=(700,500)
+                img.thumbnail(output_size)
+                img.save(path)
