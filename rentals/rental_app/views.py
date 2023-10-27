@@ -1,6 +1,7 @@
 from rest_framework import viewsets,permissions
 from .models import location,sub_location,appartment
 from .serializer import LocationSerializer,SubLocationSerializer,AppartmentSerializer,LoginUserSerializer
+import os
 
 class CustomCreatePermission(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -25,6 +26,25 @@ class SubLocationAPI(viewsets.ModelViewSet):
         self.queryset = sub_location.objects.filter(
             location_id=self.kwargs['loc'])
         return super().list(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        image_tag_ls=[('image',instance.image),('thumbnail',instance.thumbnail),('image2',instance.image2),('image3',instance.image3)]
+        for name,object in image_tag_ls:
+            if name in request.FILES:
+                image = request.FILES[name]
+                if object.name != 'download.jpg':
+                    prev_path = object.path
+                    os.remove(prev_path)
+                object = request.FILES[name]
+                instance.save()
+        serializer = self.get_serializer(instance, data=request.data, partial=False)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+        return Response(serializer.data)
 class AppartmentAPI(viewsets.ModelViewSet):
     serializer_class=AppartmentSerializer
     queryset=appartment.objects.all()
