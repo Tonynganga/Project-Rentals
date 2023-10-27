@@ -1,0 +1,1 @@
+export const HTTP_API_PATH="http://172.22.68.150";

@@ -18,11 +18,17 @@ class SubLocationSerializer(serializers.ModelSerializer):
 class AppartmentSerializer(serializers.ModelSerializer):
     location_name = serializers.CharField(source='sub_location_id.location_id.name',required=False)
     sub_location_name = serializers.CharField(source='sub_location_id.name',required=False)
-    image=serializers.ImageField(write_only=True)
+    thumbnail=serializers.ImageField(write_only=True,required=False)
+    image=serializers.ImageField(write_only=True,required=False)
+    image2=serializers.ImageField(write_only=True,required=False)
+    image3=serializers.ImageField(write_only=True,required=False)
+    thumbnail_url=serializers.URLField(source='thumbnail.url',read_only=True)
     image_url=serializers.URLField(source='image.url',read_only=True)
+    image2_url=serializers.URLField(source='image2.url',read_only=True)
+    image3_url=serializers.URLField(source='image3.url',read_only=True)
     class Meta:
         model=appartment
-        fields=['id','name','sub_location_id','rent_amount','image','image_url','location_name','sub_location_name']
+        fields=['id','name','sub_location_id','rent_amount','image','image_url','thumbnail','thumbnail_url','image2','image2_url','image3','image3_url','location_name','sub_location_name','description']
         read_only_fields=['id','location_name','sub_location_name','image_url']
         
 class LoginUserSerializer(serializers.ModelSerializer):

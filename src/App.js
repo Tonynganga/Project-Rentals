@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/property/:id' element={<Property />}/>
+        <Route path='/subLocation/:id' element={<Property />}/>
         <Route path='/slider' element={<PropertySlider />}/>
       </Routes>
       <Footer />
