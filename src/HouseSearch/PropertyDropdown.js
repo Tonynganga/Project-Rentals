@@ -11,11 +11,10 @@ const PropertyDropdown = () =>{
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <Menu as='div' className='dropdown-relative'>
-            <Menu.Button
-                onClick={() => setIsOpen(!isOpen)}
-                className='dropdown-btn w-full text-left'
-            >
+        <Menu as='div' className='dropdown relative'>
+        <Menu.Button
+            onClick={() => setIsOpen(!isOpen)}
+            className='dropdown-btn w-full text-left'>
                 <RiHome5Line className='dropdown-icon-primary' />
                 <div>
                     <div className='text-[15px] font-medium leading-tight'>{subLocation}</div>
@@ -29,15 +28,15 @@ const PropertyDropdown = () =>{
             </Menu.Button>  
 
             <Menu.Items className='dropdown-menu'>
-                {SubLocations.map((subLocation, index) => {
+                {SubLocations.map((subloc, index) => {
                     return (
                         <Menu.Item
-                            as='li'
-                            onClick={() => setsubLocation(subLocation)}
+                            as='div'
+                            onClick={() => setsubLocation(subloc)}
                             key={index}
                             className='cursor-pointer hover:text-violet-700 transition'
                         >
-                            {subLocation}
+                            {subloc}
                         </Menu.Item>        
                     );
                 })}

@@ -32,7 +32,7 @@ const CountyDropdown = () =>{
                 {Locations.map((loc, index) =>{
                     return (
                         <Menu.Item
-                            as='li'
+                            as='div'
                             onClick={() => setLocation(loc)}
                             key={index}
                             className='cursor-pointer hover:text-violet-700 transition'>
