@@ -1,4 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext,useEffect, useState } from "react";
+import {HTTP_API_PATH} from "../utils"
+import axios from 'axios';
 
 import { housesData } from "../data";
 
@@ -11,17 +13,39 @@ import { Link, useParams } from "react-router-dom";
 import PropertySlider from "../components/PropertySlider";
 
 const Property = () => {
-    const { houses2 } = useContext(HouseContext);
+    const { houses2,setHouses } = useContext(HouseContext);
+    // const [loading,setLoading]=useState(true)
+    let loading=true
     const { id } = useParams();
-    const appartment = houses2.find((house) => {
-        return house.id === parseInt(id);
-    });
+    const [appartment,setAppartment]=useState({})
+    
+    console.log(loading,houses2)
+    if(appartment!=undefined){
+        loading=false
+    }
+
+    useEffect(() =>{
+        if( houses2==[]){
+            loading=true
+        axios.get (HTTP_API_PATH+'/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
+       .then (res => {
+             setHouses(res.data)  
+       })
+       .catch (err => {
+        console.log(err.data)       
+       });
+    }else{
+        setAppartment(houses2.find((house) => {
+            return house.id === parseInt(id);
+        }))
+       }
+     }, [houses2]);
     // const appartment = props.location.state.house
-    return (
+    return  (
         <div className="container mx-auto min-h-[700px] mb-2">
 
             <div className="flex flex-col items-start gap-8 lg:flex-row">
-                <div className="max-w-[768px]">
+               {loading?(<p></p>): (<div><div className="max-w-[768px]">
                     <div className="mb-2">
                         < PropertySlider house={appartment} />
                     </div>
@@ -55,7 +79,7 @@ const Property = () => {
                         </div> */}
                     </div>
                     <p>{appartment.description}</p>
-                </div>
+                </div></div>)}
             </div>
         </div>
 
