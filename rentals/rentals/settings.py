@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-&(b^f25!d6!n7)+bw0sm6y2f))wxbsx1(i+py16rq=r^yn-#o*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.testproject149.com','rentals-93e56842ce74.herokuapp.com','172.22.68.150','127.0.0.1','0.0.0.0']
 AUTH_USER_MODEL = 'auth.User'
 CORS_ALLOW_ALL_ORIGINS = True
 
