@@ -1,5 +1,5 @@
 import React, { useContext,useEffect} from "react";
-import {HTTP_API_PATH} from "../utils"
+// import {HTTP_API_PATH} from "../utils"
 import axios from 'axios';
 
 // import { housesData } from "../data";
