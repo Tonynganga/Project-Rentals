@@ -1,6 +1,6 @@
 import React,{useContext,useEffect} from 'react';
 import { HouseContext } from "../components/HouseContext";
-import {HTTP_API_PATH} from "../utils"
+// import {HTTP_API_PATH} from "../utils"
 import axios from 'axios';
 //pages
 import HouseList from '../components/HouseList';
@@ -10,7 +10,7 @@ const Home = () =>{
     const { setHouses } = useContext(HouseContext);
     useEffect(() =>{
         //return all counties
-        axios.get (HTTP_API_PATH+'/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
+        axios.get ('/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
        .then (res => {
              setHouses(res.data)            
        })

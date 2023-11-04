@@ -34,7 +34,7 @@ const Property = () => {
     useEffect(() =>{
         if( houses.length===0){
             // loading=true
-        axios.get (HTTP_API_PATH+'/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
+        axios.get ('/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
        .then (res => {
              setHouses(res.data)  
        })
