@@ -18,8 +18,10 @@ from django.urls import path,include,re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-urlpatterns=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns= staticfiles_urlpatterns()
+urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 urlpatterns+= [
     path('admin/YWRtaW4xMjM0bG9naW4', admin.site.urls),
     path('api/',include('rental_app.urls')),
