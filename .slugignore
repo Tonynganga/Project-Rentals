@@ -1,3 +1,7 @@
 /src
+package.json
+package-lock.json
+/node_modules
 /public
+tailwind.config.js
 README.md
