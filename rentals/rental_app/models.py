@@ -41,6 +41,8 @@ class appartment(models.Model):
     image2 = models.ImageField(default='download.jpg',upload_to='appartment_pics')
     image3 = models.ImageField(default='download.jpg',upload_to='appartment_pics')
     description = models.TextField(null=True)
+    bedrooms=models.CharField(max_length = 50,default='bed-sitter')
+    bathrooms=models.CharField(max_length = 50,default='self-contained')
     rent_amount=models.IntegerField(null=True)
     def __str__ (self):
         return f'{self.name} pic'

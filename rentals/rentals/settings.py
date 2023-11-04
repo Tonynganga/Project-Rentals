@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,7 +62,9 @@ ROOT_URLCONF = 'rentals.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR.parent,'build')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,13 +134,18 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import os
+
 # STATICFILES_DIRS=[
 #     os.path.join(BASE_DIR.parent,'static')
 # ]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS=[
+    os.path.join(BASE_DIR.parent,'build/static')
+]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

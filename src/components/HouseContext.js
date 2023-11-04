@@ -1,8 +1,9 @@
  import React, { createContext, useState, useEffect } from 'react';
- import axios from 'axios';
+//  import axios from 'axios';
 
- import { housesData } from '../data';
+//  import { housesData } from '../data';
 
+//  import {HTTP_API_PATH} from "../utils"
  export const HouseContext = createContext();
 
  const HouseContextProvider = ({ children }) => {
@@ -17,17 +18,7 @@
    const [loading, setLoading] = useState(false);
 
 
-    useEffect(() =>{
-       //return all counties
-       let my_data;
-       axios.get ('http://172.22.68.150/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
-      .then (res => {
-            setHouses(res.data)            
-      })
-      .catch (err => {
-      console.log(err.data)
-      });     
-    }, []);
+    
 
 
     useEffect(() => {
@@ -136,6 +127,8 @@
    return(
       <HouseContext.Provider
          value={{
+            setHouses,
+            houses,
             setHouses2,
             houses2,
             Locations,

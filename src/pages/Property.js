@@ -1,32 +1,39 @@
-import React, { useContext,useEffect, useState } from "react";
+import React, { useContext,useEffect} from "react";
 import {HTTP_API_PATH} from "../utils"
 import axios from 'axios';
 
-import { housesData } from "../data";
+// import { housesData } from "../data";
 
 import { HouseContext } from "../components/HouseContext";
 
-import { BiBed, BiBath, BiPhone, BiArea } from "react-icons/bi";
+// import { BiBed, BiBath, BiPhone, BiArea } from "react-icons/bi";
 
-import { Link, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 import PropertySlider from "../components/PropertySlider";
 
 const Property = () => {
-    const { houses2,setHouses } = useContext(HouseContext);
+    const { houses,setHouses } = useContext(HouseContext);
     // const [loading,setLoading]=useState(true)
     let loading=true
     const { id } = useParams();
-    const [appartment,setAppartment]=useState({})
-    
-    console.log(loading,houses2)
-    if(appartment!=undefined){
+    // const [appartment,setAppartment]=useState({})
+    let appartment={}
+    if(houses.length>0){
+        appartment=houses.find((house) => {
+        return house.id === parseInt(id);
+        })
         loading=false
     }
+    
+    // console.log(loading,houses)
+    // if(appartment!=undefined){
+    //     loading=false
+    // }
 
     useEffect(() =>{
-        if( houses2==[]){
-            loading=true
+        if( houses.length===0){
+            // loading=true
         axios.get (HTTP_API_PATH+'/api/rentals/get_appartment', {headers: {'Content-Type': 'application/json',}})
        .then (res => {
              setHouses(res.data)  
@@ -34,12 +41,8 @@ const Property = () => {
        .catch (err => {
         console.log(err.data)       
        });
-    }else{
-        setAppartment(houses2.find((house) => {
-            return house.id === parseInt(id);
-        }))
-       }
-     }, [houses2]);
+    }
+     }, [houses]);
     // const appartment = props.location.state.house
     return  (
         <div className="container mx-auto min-h-[700px] mb-2">

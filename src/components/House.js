@@ -1,7 +1,9 @@
 import React from "react";
 import {HTTP_API_PATH} from "../utils"
 
-import { BiBed, BiBath, BiArea} from 'react-icons/bi';
+import { BiBed, BiBath} from 'react-icons/bi';
+
+// import {BiArea} from 'react-icons/bi';
 
 const House = ({ house }) => {
     return(
@@ -18,7 +20,7 @@ const House = ({ house }) => {
             <div className='text-lg font-semibold max-w-[260px]'>
                 { house.name }
             </div>
-            {/* <div className='flex gap-x-4 my-4'>
+            <div className='flex gap-x-4 my-4'>
                 <div className='flex items-center text-gray-600 gap-1'>
                     <div className='text-[20px] rounded-full'>
                         <BiBed />
@@ -33,13 +35,13 @@ const House = ({ house }) => {
                     </div>
                     <div className='text-base'>{house.bathrooms}</div>
                 </div>
-                <div className='flex items-center text-gray-600 gap-1'>
+                {/* <div className='flex items-center text-gray-600 gap-1'>
                     <div className='text-[20px] rounded-full'>
                         <BiArea />
                     </div>
                     <div className='text-base'>{ house.surface }</div>
-                </div>
-            </div> */}
+                </div> */}
+            </div>
             <div className='text-lg font-semibold text-violet-600 mb-4'>
                 Ksh { house.rent_amount }
             </div>
