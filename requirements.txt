@@ -10,7 +10,6 @@ blinker==1.4
 cffi==1.15.1
 channels==3.0.4
 channels-redis==3.4.0
-command-not-found==0.3
 constantly==15.1.0
 cryptography==41.0.4
 daphne==3.0.2
