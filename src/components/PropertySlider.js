@@ -18,9 +18,9 @@ const PropertySlider = (props) => {
     // ]
 
     const imgs=[
-        {id:0,value:props.house.image_url},
-        {id:1,value:props.house.image2_url},
-        {id:2,value:props.house.image3_url},]
+        {id:0,value:'/static'+props.house.image_url},
+        {id:1,value:'/static'+props.house.image2_url},
+        {id:2,value:'/static'+props.house.image3_url},]
     const [wordData,setWordData] =useState(imgs[0])
     const [val, setVal] = useState(0)
     const handleClick = (index)=>{

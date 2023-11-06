@@ -26,5 +26,5 @@ urlpatterns+= [
     path('admin/YWRtaW4xMjM0bG9naW4', admin.site.urls),
     path('api/',include('rental_app.urls')),
      path('',TemplateView.as_view(template_name='index.html')),
-     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+    #  re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
