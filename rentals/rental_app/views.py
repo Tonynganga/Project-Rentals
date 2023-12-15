@@ -2,6 +2,7 @@ from rest_framework import viewsets,permissions,generics
 from .models import location,sub_location,appartment
 from .serializer import LocationSerializer,SubLocationSerializer,AppartmentSerializer,LoginUserSerializer
 import os
+from django.core.files.storage import default_storage
 
 class CustomCreatePermission(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -27,27 +28,12 @@ class SubLocationAPI(viewsets.ModelViewSet):
             location_id=self.kwargs['loc'])
         return super().list(request, *args, **kwargs)
     def update(self, request, *args, **kwargs):
-        instance = self.get_object()
-        image_tag_ls=[('image',instance.image),('thumbnail',instance.thumbnail),('image2',instance.image2),('image3',instance.image3)]
-        for name,object in image_tag_ls:
-            if name in request.FILES:
-                image = request.FILES[name]
-                if object.name != 'download.jpg':
-                    prev_path = object.path
-                    os.remove(prev_path)
-                object = request.FILES[name]
-                instance.save()
-        serializer = self.get_serializer(instance, data=request.data, partial=False)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-        if getattr(instance, '_prefetched_objects_cache', None):
-            # If 'prefetch_related' has been applied to a queryset, we need to
-            # forcibly invalidate the prefetch cache on the instance.
-            instance._prefetched_objects_cache = {}
-        return Response(serializer.data)
+        return super().update(request, *args, **kwargs)
+    
 class AppartmentAPI(viewsets.ModelViewSet):
     serializer_class=AppartmentSerializer
     queryset=appartment.objects.all()
+    
     def get_permissions(self):
         if self.action == 'create':
             return [CustomCreatePermission()]
@@ -58,6 +44,30 @@ class AppartmentAPI(viewsets.ModelViewSet):
         # self.queryset = appartment.objects.filter(
         #     sub_location_id=self.kwargs['sub_loc'])
         # return super().list(request, *args, **kwargs)
+    def update(self, request, *args, **kwargs):
+        
+        # instance = self.get_object()
+        instance=appartment.objects.get(id=self.kwargs['id'])
+        image_tag_ls=[('image',instance.image),('thumbnail',instance.thumbnail),('image2',instance.image2),('image3',instance.image3)]
+        for name,field in image_tag_ls:
+            if name in request.FILES:
+                new_file = request.FILES[name]                
+                if field.name != 'download.jpg':
+                    try:
+                        default_storage.delete(field.name)
+                    except FileNotFoundError:
+                        pass  
+                field.save(new_file.name, new_file)           
+        instance.save()       
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        if getattr(instance, '_prefetched_objects_cache', None):
+            # If 'prefetch_related' has been applied to a queryset, we need to
+            # forcibly invalidate the prefetch cache on the instance.
+            instance._prefetched_objects_cache = {}
+        return Response(serializer.data)
+    
     
 
 

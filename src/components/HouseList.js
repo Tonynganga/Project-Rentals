@@ -12,6 +12,8 @@ import { ImSpinner } from 'react-icons/im';
 //link
 import { Link } from "react-router-dom";
 
+import './Main.css';
+
 const HouseList = () => {
     const { houses2, loading } = useContext(HouseContext);
 
@@ -30,7 +32,7 @@ const HouseList = () => {
     }
 
     return (
-        <section className='mb-20 mt-[20px]'>
+        <section className='mb-20 mt-[20px] custom-margin custom-margin2'>
             <div className='container mx-auto'>
                 <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14'>
                     {houses2.map((house, index) => {

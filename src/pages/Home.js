@@ -20,9 +20,9 @@ const Home = () =>{
      }, []);
      
     return (
-        <div className='min-h-[1800px'>
-            <Hero />
-            <HouseList />
+        <div className='flex flex-col justify-between gap-y-20 '>
+            <Hero  />
+            <HouseList  />
         </div>
     )
 }

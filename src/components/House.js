@@ -1,6 +1,8 @@
 import React from "react";
 import {HTTP_API_PATH} from "../utils"
+import LogoImage from '../assets/img/MainLogo.png';
 
+import './Main.css';
 import { BiBed, BiBath} from 'react-icons/bi';
 
 // import {BiArea} from 'react-icons/bi';

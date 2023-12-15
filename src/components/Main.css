@@ -23,6 +23,18 @@
     margin-top: 10px;
   }
 
+  @media (max-width: 1025px) {
+    .custom-margin {
+      /* height: 450px; Set a custom height for smaller screens */
+      margin-top: 170px;
+    }
+  }
+  @media (max-width: 456px) {
+    .custom-margin2 {
+      /* height: 450px; Set a custom height for smaller screens */
+      margin-top: 270px;
+    }
+  }
 
 /*Property Slider*/
 .main{

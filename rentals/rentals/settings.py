@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rental_app',
     'corsheaders',
-    'knox'
+    'knox',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'rentals.urls'
@@ -135,18 +137,23 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR.parent,'static')
-]
+# STATICFILES_DIRS=[
+#     os.path.join(BASE_DIR.parent,'static'),
+# ]
 
-MEDIA_ROOT=os.path.join(BASE_DIR.parent,'build/static/media')
+MEDIA_ROOT=os.path.join(BASE_DIR, 'staticfiles/media')
 # MEDIA_URL='/static/media/'
 MEDIA_URL='/media/'
+# WHITENOISE_STATIC_PREFIX = '/static/'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS=[
+    # os.path.join(BASE_DIR, 'staticfiles'),
     os.path.join(BASE_DIR.parent,'build/static')
 ]
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [

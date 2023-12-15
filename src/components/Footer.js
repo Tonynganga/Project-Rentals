@@ -1,5 +1,5 @@
 import React from "react";
-import { footer } from '../data';
+// import { footer } from '../data';
 import LogoImage from '../assets/img/MainLogo.png';
 
 
@@ -34,7 +34,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {footer.map((val) => (
+                    {/* {footer.map((val) => (
                     <div className="box flex flex-col items-center">
                             <h3 className="mr-[20px]">{val.title}</h3>
                             <ul>
@@ -43,7 +43,7 @@ const Footer = () => {
                                 ))}
                             </ul>
                     </div> 
-                    ))}
+                    ))} */}
                 </div>
             </footer>
             <div className="text-center py-5 bg-[#1d2636] text-gray-500 border-t border-opacity-10">

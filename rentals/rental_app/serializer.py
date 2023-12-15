@@ -2,6 +2,7 @@ from rest_framework import serializers,exceptions
 from .models import location,sub_location,appartment
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
+from django.core.validators import FileExtensionValidator
 
 
 
@@ -30,6 +31,15 @@ class AppartmentSerializer(serializers.ModelSerializer):
         model=appartment
         fields=['id','name','sub_location_id','rent_amount','image','image_url','thumbnail','thumbnail_url','image2','image2_url','image3','image3_url','location_name','sub_location_name','bedrooms','bathrooms','description']
         read_only_fields=['id','location_name','sub_location_name','image_url','bedrooms','bathrooms']
+    
+    def to_internal_value(self, data):
+        if self.instance:
+            data.pop('thumbnail', None)
+        return super().to_internal_value(data)
+    # def update(self, instance, validated_data):
+    #     validated_data.pop('thumbnail', None)
+    #     # validated_data.pop('field2', None)
+    #     return super().update(instance, validated_data)
         
 class LoginUserSerializer(serializers.ModelSerializer):
     username = serializers.CharField()  # added missing fields for serializer

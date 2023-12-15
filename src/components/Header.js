@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { nav } from '../data'
+// import { nav } from '../data'
 import { Link } from 'react-router-dom';
 import LogoImage from '../assets/img/MainLogo.png';
 
@@ -20,11 +20,11 @@ const Header = () =>{
                     </div>
                     <div className='py-5px'>
                         <ul className={ navList ? "small" : "flex"}>
-                            {nav.map((list, index) => (
+                            {/* {nav.map((list, index) => (
                                 <li key={index}>
                                     <Link className='ml-7 transition duration-500 font-medium text-gray-700 hover:text-green-500' to={list.path}>{list.text}</Link>
                                 </li>
-                            ))} 
+                            ))}  */}
                         </ul>
                     </div>
                     <div className='button flex'>
