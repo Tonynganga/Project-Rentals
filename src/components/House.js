@@ -45,7 +45,7 @@ const House = ({ house }) => {
                 </div> */}
             </div>
             <div className='text-lg font-semibold text-violet-600 mb-4'>
-                Ksh { house.rent_amount }
+                Ksh { house.rent_amount_minimum }
             </div>
 
         </div>

@@ -29,7 +29,11 @@ class AppartmentSerializer(serializers.ModelSerializer):
     image3_url=serializers.URLField(source='image3.url',read_only=True)
     class Meta:
         model=appartment
-        fields=['id','name','sub_location_id','rent_amount','image','image_url','thumbnail','thumbnail_url','image2','image2_url','image3','image3_url','location_name','sub_location_name','bedrooms','bathrooms','description']
+        fields=['id','name','sub_location_id',
+                'rent_amount_minimum','rent_amount_maximum','image',
+                'image_url','thumbnail','thumbnail_url','image2','image2_url',
+                'image3','image3_url','location_name','sub_location_name','bedrooms',
+                'bathrooms','description']
         read_only_fields=['id','location_name','sub_location_name','image_url','bedrooms','bathrooms']
     
     def to_internal_value(self, data):

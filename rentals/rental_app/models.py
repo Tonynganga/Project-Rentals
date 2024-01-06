@@ -43,9 +43,12 @@ class appartment(models.Model):
     description = models.TextField(null=True)
     bedrooms=models.CharField(max_length = 50,default='bed-sitter')
     bathrooms=models.CharField(max_length = 50,default='self-contained')
-    rent_amount=models.IntegerField(null=True)
+    rent_amount_minimum=models.IntegerField(null=True)
+    rent_amount_maximum=models.IntegerField(null=True)
+    care_taker=models.CharField(max_length = 50,null=True)
+    coordinates=models.CharField(max_length = 50,null=True)
     def __str__ (self):
-        return f'{self.name} pic'
+        return f'{self.name}'
     def save(self ,*args, **kwargs):
         super(appartment, self).save(*args, **kwargs)
         thumbnail=Image.open(self.thumbnail.path)
